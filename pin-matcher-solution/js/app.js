@@ -48,15 +48,23 @@ function verifyPin() {
 
     const successMessage = document.getElementById('notify-success');
     const failError = document.getElementById('notify-failed');
-
-    if (pin == typedNumbers) {
+    let countChances = document.getElementById('count').innerText;
+    if (pin == typedNumbers && countChances > 0) {
         console.log('Yeaah ,matched');
         successMessage.style.display = 'block';
         failError.style.display = 'none';
     }
     else {
-        console.log('OOpppss');
-        failError.style.display = 'block';
-        successMessage.style.display = 'none';
+        if (countChances > 0) {
+            countChances--;
+            console.log('OOpppss', countChances);
+            failError.style.display = 'block';
+            successMessage.style.display = 'none';
+            document.getElementById('count').innerText = countChances;
+        }
+
+
+
+
     }
 }
